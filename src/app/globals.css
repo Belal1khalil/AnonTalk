@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-50: #fdf4f3;
+  --color-primary-100: #fde5e3;
+  --color-primary-200: #fcd0cc;
+  --color-primary-300: #f8b0a9;
+  --color-primary-400: #f1786c;
+  --color-primary-500: #e75a4c;
+  --color-primary-600: #d43d2e;
+  --color-primary-700: #b23023;
+  --color-primary-800: ##932b21;
+  --color-primary-900: #7b2921;
+  --color-primary-950: #42120d;
+}
+
+@layer components {
+  .form-control {
+    @apply px-3 py-2  rounded-md border border-gray-400/50 focus:outline-none focus:border-primary-500;
+  }
+  .btn {
+    @apply px-4 py-3 uppercase  rounded-lg bg-primary-200 text-gray-600 hover:bg-primary-300 transition-colors duration-300;
+  }
+}
+@layer base {
+  a,
+  span {
+    @apply inline-block;
+  }
+  a,
+  button {
+    @apply cursor-pointer;
+  }
+}
+
+@utility container {
+  @apply px-4 mx-auto sm:px-6 lg:px-6;
+}
