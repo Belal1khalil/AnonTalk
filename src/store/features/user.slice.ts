@@ -2,6 +2,7 @@ import { userState } from "@/types/user.types";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { apiClient } from "./../../services/api-client";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const initialState: userState = {
   token: null,
@@ -33,18 +34,42 @@ export const signUp = createAsyncThunk(
     }
   },
 );
+export const verifyAccount = createAsyncThunk(
+  "/user/verify",
+  async (values: { email: string; otp: string }) => {
+    try {
+      const options = {
+        method: "POST",
+        url: "/auth/verify-account",
+        data: values,
+      };
+      const { data } = await apiClient.request(options);
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  },
+);
 
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {},
   extraReducers: function (builder) {
+    // SignUp cases
     builder.addCase(signUp.fulfilled, (state, action) => {
-      state.userData = action.payload
+      state.userData = action.payload;
     });
     builder.addCase(signUp.rejected, (state, action) => {
-       toast.error("Email Already exist")
+      toast.error("Email Already exist");
     });
+    // verify cases
+    builder.addCase(verifyAccount.fulfilled, (state, action) => {
+      console.log({ state, action });
+    });
+    builder.addCase(verifyAccount.rejected, (state, action) => {});
   },
 });
 

@@ -59,9 +59,9 @@ export default function page() {
       dispatch(signUp(values))
         .then((res: any) => {
           if (res.payload.status == 201) {
-            toast.success("Account Created Successfully");
+            toast.success("Account Created Successfully , Check Your Email");
             setTimeout(() => {
-              router.push("/login");
+              router.push("/verify");
             }, 1500);
           }
         })
