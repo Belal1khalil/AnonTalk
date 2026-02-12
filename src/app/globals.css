@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Required: Enable class-based dark mode for Tailwind v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-primary-50: #fdf4f3;
   --color-primary-100: #fde5e3;
@@ -9,20 +12,26 @@
   --color-primary-500: #e75a4c;
   --color-primary-600: #d43d2e;
   --color-primary-700: #b23023;
-  --color-primary-800: ##932b21;
+  --color-primary-800: #932b21;
   --color-primary-900: #7b2921;
   --color-primary-950: #42120d;
 }
 
 @layer components {
   .form-control {
-    @apply px-3 py-2  rounded-md border border-gray-400/50 focus:outline-none focus:border-primary-500;
+    @apply px-3 py-2 rounded-md border border-gray-400/50 focus:outline-none focus:border-primary-500
+           dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100 dark:placeholder-gray-400;
   }
   .btn {
-    @apply px-4 py-3 uppercase  rounded-lg bg-primary-200 text-gray-600 hover:bg-primary-300 transition-colors duration-300;
+    @apply px-4 py-3 uppercase rounded-lg bg-primary-200 text-gray-600 hover:bg-primary-300 transition-colors duration-300
+           dark:bg-primary-700 dark:text-gray-100 dark:hover:bg-primary-600;
   }
 }
+
 @layer base {
+  body {
+    @apply bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100 transition-colors duration-300;
+  }
   a,
   span {
     @apply inline-block;
@@ -36,3 +45,4 @@
 @utility container {
   @apply px-4 mx-auto sm:px-6 lg:px-6;
 }
+

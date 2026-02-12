@@ -71,18 +71,22 @@ export default function page() {
     },
   });
 
+  const inputBaseClass = `appearance-none block w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-4 transition-all duration-300 ease-in-out hover:bg-white dark:hover:bg-gray-600`;
+  const inputNormalBorder = `border-gray-200 dark:border-gray-600 focus:border-indigo-500 focus:ring-indigo-200 dark:focus:ring-indigo-800`;
+  const inputErrorBorder = `border-red-300 focus:ring-red-200 focus:border-red-400`;
+
   return (
-    <div className=" flex items-center justify-center bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 py-9 px-4 sm:px-6 lg:px-8 font-sans">
-      <div className="max-w-xl w-full space-y-8 bg-white/90 backdrop-blur-lg p-8 sm:p-12 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/50 relative overflow-hidden">
+    <div className="flex items-center justify-center bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 py-9 px-4 sm:px-6 lg:px-8 font-sans transition-colors duration-300">
+      <div className="max-w-xl w-full space-y-8 bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg p-8 sm:p-12 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)] border border-white/50 dark:border-gray-700/50 relative overflow-hidden">
         {/* Background Accents */}
-        <div className="absolute -top-10 -right-10 w-40 h-40 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
-        <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse delay-700"></div>
+        <div className="absolute -top-10 -right-10 w-40 h-40 bg-purple-300 dark:bg-purple-800 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
+        <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-indigo-300 dark:bg-indigo-800 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse delay-700"></div>
 
         <div className="text-center relative z-10">
-          <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight">
+          <h2 className="text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight">
             Create Account
           </h2>
-          <p className="mt-3 text-base text-gray-500 font-medium">
+          <p className="mt-3 text-base text-gray-500 dark:text-gray-400 font-medium">
             Join our community and start your journey
           </p>
         </div>
@@ -96,7 +100,7 @@ export default function page() {
             <div>
               <label
                 htmlFor="firstName"
-                className="block text-sm font-semibold text-gray-700 mb-2 ml-1"
+                className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 ml-1"
               >
                 First Name
               </label>
@@ -109,11 +113,11 @@ export default function page() {
                 value={formik.values.firstName}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className={`appearance-none block w-full px-4 py-3 bg-gray-50 border ${
+                className={`${inputBaseClass} ${
                   formik.errors.firstName && formik.touched.firstName
-                    ? "border-red-300 focus:ring-red-200 focus:border-red-400"
-                    : "border-gray-200 focus:border-indigo-500 focus:ring-indigo-200"
-                } rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-4 transition-all duration-300 ease-in-out hover:bg-white`}
+                    ? inputErrorBorder
+                    : inputNormalBorder
+                }`}
               />
               {formik.errors.firstName && formik.touched.firstName && (
                 <p className="text-red-500 text-xs mt-1.5 ml-1 font-medium animate-fadeIn">
@@ -126,7 +130,7 @@ export default function page() {
             <div>
               <label
                 htmlFor="lastName"
-                className="block text-sm font-semibold text-gray-700 mb-2 ml-1"
+                className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 ml-1"
               >
                 Last Name
               </label>
@@ -139,11 +143,11 @@ export default function page() {
                 value={formik.values.lastName}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className={`appearance-none block w-full px-4 py-3 bg-gray-50 border ${
+                className={`${inputBaseClass} ${
                   formik.errors.lastName && formik.touched.lastName
-                    ? "border-red-300 focus:ring-red-200 focus:border-red-400"
-                    : "border-gray-200 focus:border-indigo-500 focus:ring-indigo-200"
-                } rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-4 transition-all duration-300 ease-in-out hover:bg-white`}
+                    ? inputErrorBorder
+                    : inputNormalBorder
+                }`}
               />
               {formik.errors.lastName && formik.touched.lastName && (
                 <p className="text-red-500 text-xs mt-1.5 ml-1 font-medium animate-fadeIn">
@@ -157,7 +161,7 @@ export default function page() {
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-semibold text-gray-700 mb-2 ml-1"
+              className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 ml-1"
             >
               Email Address
             </label>
@@ -170,11 +174,11 @@ export default function page() {
               value={formik.values.email}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              className={`appearance-none block w-full px-4 py-3 bg-gray-50 border ${
+              className={`${inputBaseClass} ${
                 formik.errors.email && formik.touched.email
-                  ? "border-red-300 focus:ring-red-200 focus:border-red-400"
-                  : "border-gray-200 focus:border-indigo-500 focus:ring-indigo-200"
-              } rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-4 transition-all duration-300 ease-in-out hover:bg-white`}
+                  ? inputErrorBorder
+                  : inputNormalBorder
+              }`}
             />
             {formik.errors.email && formik.touched.email && (
               <p className="text-red-500 text-xs mt-1.5 ml-1 font-medium animate-fadeIn">
@@ -187,7 +191,7 @@ export default function page() {
           <div>
             <label
               htmlFor="phone"
-              className="block text-sm font-semibold text-gray-700 mb-2 ml-1"
+              className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 ml-1"
             >
               Phone Number
             </label>
@@ -200,11 +204,11 @@ export default function page() {
               value={formik.values.phone}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              className={`appearance-none block w-full px-4 py-3 bg-gray-50 border ${
+              className={`${inputBaseClass} ${
                 formik.errors.phone && formik.touched.phone
-                  ? "border-red-300 focus:ring-red-200 focus:border-red-400"
-                  : "border-gray-200 focus:border-indigo-500 focus:ring-indigo-200"
-              } rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-4 transition-all duration-300 ease-in-out hover:bg-white`}
+                  ? inputErrorBorder
+                  : inputNormalBorder
+              }`}
             />
             {formik.errors.phone && formik.touched.phone && (
               <p className="text-red-500 text-xs mt-1.5 ml-1 font-medium animate-fadeIn">
@@ -217,7 +221,7 @@ export default function page() {
           <div>
             <label
               htmlFor="password"
-              className="block text-sm font-semibold text-gray-700 mb-2 ml-1"
+              className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 ml-1"
             >
               Password
             </label>
@@ -230,11 +234,11 @@ export default function page() {
               value={formik.values.password}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              className={`appearance-none block w-full px-4 py-3 bg-gray-50 border ${
+              className={`${inputBaseClass} ${
                 formik.errors.password && formik.touched.password
-                  ? "border-red-300 focus:ring-red-200 focus:border-red-400"
-                  : "border-gray-200 focus:border-indigo-500 focus:ring-indigo-200"
-              } rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-4 transition-all duration-300 ease-in-out hover:bg-white`}
+                  ? inputErrorBorder
+                  : inputNormalBorder
+              }`}
             />
             {formik.errors.password && formik.touched.password && (
               <p className="text-red-500 text-xs mt-1.5 ml-1 font-medium animate-fadeIn">
@@ -247,7 +251,7 @@ export default function page() {
           <div>
             <label
               htmlFor="gender"
-              className="block text-sm font-semibold text-gray-700 mb-2 ml-1"
+              className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 ml-1"
             >
               Gender
             </label>
@@ -258,11 +262,11 @@ export default function page() {
                 value={formik.values.gender}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className={`appearance-none block w-full px-4 py-3 bg-gray-50 border ${
+                className={`${inputBaseClass} ${
                   formik.errors.gender && formik.touched.gender
-                    ? "border-red-300 focus:ring-red-200 focus:border-red-400"
-                    : "border-gray-200 focus:border-indigo-500 focus:ring-indigo-200"
-                } rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-4 transition-all duration-300 ease-in-out hover:bg-white`}
+                    ? inputErrorBorder
+                    : inputNormalBorder
+                }`}
               >
                 <option value="" disabled>
                   Select your gender
@@ -270,7 +274,7 @@ export default function page() {
                 <option value="male">Male</option>
                 <option value="female">Female</option>
               </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500 dark:text-gray-400">
                 <svg
                   className="h-5 w-5"
                   fill="none"
@@ -296,18 +300,18 @@ export default function page() {
           <div className="pt-4">
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-3.5 px-4 border border-transparent text-sm font-bold rounded-xl text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-200 focus:ring-offset-2 transition-all duration-300 shadow-lg hover:shadow-indigo-500/30 transform hover:-translate-y-0.5 active:scale-95"
+              className="group relative w-full flex justify-center py-3.5 px-4 border border-transparent text-sm font-bold rounded-xl text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-200 dark:focus:ring-indigo-800 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-all duration-300 shadow-lg hover:shadow-indigo-500/30 transform hover:-translate-y-0.5 active:scale-95"
             >
               create account
             </button>
           </div>
 
           <div className="text-center mt-6">
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-500 dark:text-gray-400">
               Already have an account?{" "}
               <a
                 href="/login"
-                className="font-semibold text-indigo-600 hover:text-indigo-500 transition-colors duration-200"
+                className="font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 transition-colors duration-200"
               >
                 Log in
               </a>
